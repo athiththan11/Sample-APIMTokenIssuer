@@ -47,3 +47,23 @@ And the response should be as follows...
   "expires_in": 3600
 }
 ```
+
+## Build, Deploy & Run
+
+Execute the following command to build the project
+
+```shell
+mvn clean package
+```
+
+Copy and place the built JAR artifact from the `/target/custom-apimtoken-issuer-x.x.x.jar` to the `<APIM>/repository/components/lib` directory.
+
+Navigate to `<APIM>/repository/conf/identity/identity.xml` and edit the `<IdentityOAuthTokenGenerator>` with the custom package...
+
+```xml
+<OAuth>
+  ...
+  <IdentityOAuthTokenGenerator>com.sample.token.MyAPIMTokenIssuer</IdentityOAuthTokenGenerator>
+  ...
+</OAuth>
+```
