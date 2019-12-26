@@ -6,7 +6,7 @@ A sample extended `APIMTokenIssuer` implementation to append a custom value to t
 
 ## Implementation
 
-This is a sample implementation to demonstrate on how-to extract a custom header sent to with the `Token` request and append it to the generate Opaque access token. 
+This is a sample implementation to demonstrate on how-to extract a custom header sent to with the `Token` request and append it to the generate Opaque access token.
 
 The custom header used here is called as `devhash` which is a hash value as `data-urlencode` with the `Token` request.
 
@@ -50,20 +50,24 @@ And the response should be as follows...
 
 ## Build, Deploy & Run
 
+### Build
+
 Execute the following command to build the project
 
 ```shell
 mvn clean package
 ```
 
-Copy and place the built JAR artifact from the `/target/custom-apimtoken-issuer-x.x.x.jar` to the `<APIM>/repository/components/lib` directory.
+### Deploy
 
-Navigate to `<APIM>/repository/conf/identity/identity.xml` and edit the `<IdentityOAuthTokenGenerator>` with the custom package...
+Copy and place the built JAR artifact from the `/target/custom-apimtoken-issuer-x.x.x.jar` to the `<APIM>/repository/components/lib` directory. And then navigate to `<APIM>/repository/conf/identity/identity.xml` and edit the `<IdentityOAuthTokenGenerator>` with the custom package...
 
 ```xml
 <OAuth>
   ...
-  <IdentityOAuthTokenGenerator>com.sample.token.MyAPIMTokenIssuer</IdentityOAuthTokenGenerator>
+  <!-- <IdentityOAuthTokenGenerator>org.wso2.carbon.apimgt.keymgt.issuers.APIMTokenIssuer</IdentityOAuthTokenGenerator> -->
+  
+  <IdentityOAuthTokenGenerator>com.athiththan.token.MyAPIMTokenIssuer</IdentityOAuthTokenGenerator>
   ...
 </OAuth>
 ```
